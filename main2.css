@@ -1,0 +1,230 @@
+/* 全体のリセットとベース設定 */
+:root {
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --primary-color: #4a90e2; /* 追加ボタンなど */
+    --text-color: #333;
+    --danger-color: #e74c3c; /* 欠席・危険 */
+    --warning-color: #f39c12; /* 遅刻 */
+    --gray-color: #95a5a6; /* 削除など */
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* タイトル周り */
+h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+.rule {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.rule h2 {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #7f8c8d;
+    font-weight: normal;
+}
+
+/* 入力エリア */
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#classInput {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#classInput:focus {
+    border-color: var(--primary-color);
+}
+
+#addBtn {
+    padding: 12px 20px;
+    margin-bottom: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    width: auto;
+    height: auto;
+    white-space: nowrap;
+}
+
+#addBtn:hover {
+    opacity: 0.9;
+}
+
+/* テーブルデザイン */
+table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: separate; /* border-radiusを効かせるため */
+    border-spacing: 0;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* 角丸からはみ出さないように */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-top: 0;
+}
+
+thead {
+    background-color: #eaeef1;
+}
+
+th {
+    padding: 15px 10px;
+    font-size: 14px;
+    color: #555;
+    text-align: center; /* 中央揃えに統一 */
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 最後の行の下線は消す */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 各セルの調整 */
+.name-Td {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left; /* 科目名は左揃えの方が見やすい */
+    padding-left: 20px;
+}
+
+.class-Td {
+    font-size: 18px;
+    font-family: monospace; /* 数字を見やすく */
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.risk-Td {
+    font-size: 14px;
+    min-width: 80px;
+}
+
+/* アクションボタン群 */
+.action-Td {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* ボタン共通スタイル */
+.absent-btn, .late-btn, .delete-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.1s;
+    min-width: 36px;
+}
+
+.absent-btn:active, .late-btn:active, .delete-btn:active {
+    transform: scale(0.95);
+}
+
+/* 欠席ボタン（赤） */
+.absent-btn {
+    background-color: var(--danger-color);
+}
+
+/* 遅刻ボタン（黄色/オレンジ） */
+.late-btn {
+    background-color: var(--warning-color);
+}
+
+/* 削除ボタン（グレー） */
+.delete-btn {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background-color: #bdc3c7;
+    color: white;
+}
+
+/* スマホ対応: 画面幅が狭いときの調整 */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    th, td {
+        padding: 10px 5px;
+        font-size: 14px;
+    }
+
+    .name-Td {
+        font-size: 14px;
+        padding-left: 10px;
+        max-width: 100px; /* 長い科目名を折り返す */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .action-Td {
+        flex-direction: column; /* ボタンを縦並びにするか、小さくするか */
+        gap: 4px;
+    }
+    
+    .absent-btn, .late-btn, .delete-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}

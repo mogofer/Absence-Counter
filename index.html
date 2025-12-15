@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoリスト</title>
+    <link rel="stylesheet" href="main2.css">
+    <script src="./main.js" defer></script>
+    </head>
+    <body>
+    <h1 id="title">欠席カウンター</h1>
+    <div class="rule">
+    <h2>5回欠席したら落単</h2>
+    <h2>1回遅刻=0.5回欠席</h2>
+    </div>
+    <label>履修授業  <input id="classInput" type="text"></label>
+    <button id="addBtn" type="text">追加</button>
+    
+    <table>
+    <thead>
+    <tr>
+    <th>授業科目</th>
+    <th>欠席回数</th>
+    <th>危険度</th>
+    <th></th>
+    </tr>
+    </thead>
+    <tbody id="classList">
+    <!-- ここに tr を追加する -->
+    </tbody>
+</table>
+        
+    <div class="controls"></div>
+    </table>
+    </body>
+    
+</html> 
